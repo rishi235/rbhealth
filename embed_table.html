@@ -48,8 +48,12 @@
                     const styles = doc.querySelectorAll('style');
                     styles.forEach(style => {
                         console.log('Adding inline style:', style.innerHTML);
+                        const styleContent = style.innerHTML;
                         const styleTag = document.createElement('style');
-                        styleTag.innerHTML = style.innerHTML;
+                        // Move @import rules to the top
+                        const importRules = styleContent.match(/@import[^;]+;/g) || [];
+                        const otherStyles = styleContent.replace(/@import[^;]+;/g, '');
+                        styleTag.innerHTML = importRules.join('\n') + '\n' + otherStyles;
                         document.head.appendChild(styleTag);
                     });
                 } else {
