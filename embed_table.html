@@ -4,24 +4,19 @@ async function loadTable() {
 
     try {
         const response = await fetch(proxyUrl + targetUrl);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
         const text = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, 'text/html');
         const tableWrapper = doc.querySelector('.simple-table-wrapper');
 
-        const tableContainer = document.getElementById('table-container');
         if (tableWrapper) {
-            tableContainer.innerHTML = tableWrapper.outerHTML;
+            document.getElementById('table-container').innerHTML = tableWrapper.outerHTML;
         } else {
-            tableContainer.innerHTML = '<p>Table not found.</p>';
+            document.getElementById('table-container').innerHTML = '<p>Table not found.</p>';
         }
     } catch (error) {
         console.error('Error loading the table:', error);
-        document.getElementById('table-container').innerHTML = `<p>Error loading the table: ${error.message}</p>`;
+        document.getElementById('table-container').innerHTML = '<p>Error loading the table.</p>';
     }
 }
 
