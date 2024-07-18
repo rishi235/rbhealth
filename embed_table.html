@@ -5,45 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinic Prices - Dynamic Table</title>
     <style>
-        .simple-table-wrapper {
-            padding: 20px 0;
-        }
-        .simple-table {
-            width: 100%;
-            border: 1px solid #C9CDCF;
-            border-spacing: 0;
-        }
-        .simple-table td.cell {
-            border-right: 1px solid #C9CDCF;
-            border-bottom: 1px solid #C9CDCF;
-            word-break: break-word;
-            background-color: #FFFFFF;
-            width: 25%;
-        }
-        .simple-table td.cell .paragraph {
-            width: 90%;
-            margin: 0 5%;
-            padding-bottom: 10px;
-            padding-top: 10px;
-            text-align: center;
-        }
-        .simple-table.style-top tr:first-child td,
-        .simple-table.style-side td:first-of-type {
-            background-color: #F8F8F8;
-        }
-        .simple-table.style-top tr:first-child td .paragraph,
-        .simple-table.style-side td:first-of-type .paragraph {
-            font-weight: 700;
-        }
-        .simple-table tr:last-child td {
-            border-bottom: none;
-        }
-        .simple-table td:last-of-type {
-            border-right: none;
-        }
-        .simple-table .empty-content-area-element {
-            padding-left: 0px !important;
-        }
+        /* Include any custom styles here, if necessary */
     </style>
 </head>
 <body>
@@ -62,6 +24,16 @@
                 const tableWrapper = doc.querySelector('.simple-table-wrapper');
 
                 if (tableWrapper) {
+                    // Fetch and include the CSS
+                    const stylesheets = doc.querySelectorAll('link[rel="stylesheet"]');
+                    stylesheets.forEach(stylesheet => {
+                        const link = document.createElement('link');
+                        link.rel = 'stylesheet';
+                        link.href = proxyUrl + encodeURIComponent(stylesheet.href);
+                        document.head.appendChild(link);
+                    });
+
+                    // Inject the table HTML
                     document.getElementById('table-container').innerHTML = tableWrapper.outerHTML;
                 } else {
                     document.getElementById('table-container').innerHTML = '<p>Table not found.</p>';
