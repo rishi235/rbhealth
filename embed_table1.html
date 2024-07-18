@@ -86,8 +86,8 @@
                     tableContainer.innerHTML = '<p>No tables found.</p>';
                 }
 
-                // Apply styles from the source document
-                const sourceStyles = doc.querySelectorAll('style');
+                // Copy all style elements from the source document to ensure styling is preserved
+                const sourceStyles = doc.querySelectorAll('style, link[rel="stylesheet"]');
                 sourceStyles.forEach(style => {
                     document.head.appendChild(style.cloneNode(true));
                 });
