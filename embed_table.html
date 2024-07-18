@@ -14,28 +14,34 @@
             const targetUrl = encodeURIComponent('https://rbclinicinfo.weebly.com/');
 
             try {
+                console.log('Fetching content from:', proxyUrl + targetUrl);
                 const response = await fetch(proxyUrl + targetUrl);
                 const data = await response.json();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(data.contents, 'text/html');
+                console.log('Fetched HTML content:', doc.documentElement.innerHTML);
                 const tableWrapper = doc.querySelector('.simple-table-wrapper');
 
                 if (tableWrapper) {
+                    console.log('Table found:', tableWrapper.outerHTML);
                     // Inject the table HTML
                     document.getElementById('table-container').innerHTML = tableWrapper.outerHTML;
 
                     // Fetch and include the CSS
                     const stylesheets = doc.querySelectorAll('link[rel="stylesheet"]');
                     stylesheets.forEach(stylesheet => {
+                        const href = stylesheet.href.startsWith('http') ? stylesheet.href : new URL(stylesheet.getAttribute('href'), 'https://rbclinicinfo.weebly.com').href;
+                        console.log('Adding stylesheet:', href);
                         const link = document.createElement('link');
                         link.rel = 'stylesheet';
-                        link.href = stylesheet.href.startsWith('http') ? stylesheet.href : 'https://rbclinicinfo.weebly.com/' + stylesheet.getAttribute('href');
+                        link.href = href;
                         document.head.appendChild(link);
                     });
 
                     // Fetch and include inline styles
                     const styles = doc.querySelectorAll('style');
                     styles.forEach(style => {
+                        console.log('Adding inline style:', style.innerHTML);
                         const styleTag = document.createElement('style');
                         styleTag.innerHTML = style.innerHTML;
                         document.head.appendChild(styleTag);
