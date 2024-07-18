@@ -43,14 +43,11 @@
                 
                 if (tableWrappers.length > 0) {
                     tableWrappers.forEach(wrapper => {
-                        // Clone the wrapper to avoid direct modification of the fetched document
                         const cleanWrapper = wrapper.cloneNode(true);
 
-                        // Remove hyperlinks from the cloned wrapper
                         cleanWrapper.querySelectorAll('a').forEach(link => {
-                            const span = document.createElement('span');
-                            span.innerHTML = link.innerHTML;
-                            link.parentNode.replaceChild(span, link);
+                            const textNode = document.createTextNode(link.textContent);
+                            link.parentNode.replaceChild(textNode, link);
                         });
 
                         tableContainer.appendChild(cleanWrapper);
@@ -59,7 +56,6 @@
                     tableContainer.innerHTML = '<p>No tables found.</p>';
                 }
                 
-                // Copy styles from the source document
                 styles.forEach(style => {
                     if (style.tagName.toLowerCase() === 'link') {
                         const link = document.createElement('link');
