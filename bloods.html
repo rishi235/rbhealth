@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed Text</title>
+    <style>
+        /* Ensure the font path is correct and accessible */
+        @font-face {
+            font-family: 'CustomFontName';
+            src: url('path/to/font.woff') format('woff');
+            /* Add additional src formats if necessary */
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'CustomFontName', Arial, sans-serif; /* Fallback fonts */
+            padding: 20px;
+        }
+
+        .content-wrapper {
+            padding: 20px;
+            border: 1px solid #C9CDCF;
+            background-color: #F8F8F8;
+        }
+    </style>
+</head>
+<body>
+    <div id="content-container" class="content-wrapper"></div>
+    <script>
+        async function loadContent() {
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            const targetUrl = 'https://www.cheshiretravelclinic.co.uk/bloods.html'; // New target URL
+            
+            try {
+                console.log('Fetching data from', targetUrl);
+                const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                console.log('Response received, parsing HTML...');
+                const text = await response.text();
+                console.log('Fetched HTML:', text); // Log the fetched HTML for inspection
+                
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                
+                console.log('Looking for content...');
+                const content = doc.querySelector('.content'); // Adjust the selector as needed
+                console.log('Content found:', content);
+                
+                const contentContainer = document.getElementById('content-container');
+                if (content) {
+                    console.log('Content found, updating container...');
+                    // Remove hyperlinks
+                    content.querySelectorAll('a').forEach(a => {
+                        const parent = a.parentNode;
+                        while (a.firstChild) {
+                            parent.insertBefore(a.firstChild, a);
+                        }
+                        parent.removeChild(a);
+                    });
+                    contentContainer.innerHTML = content.innerHTML; // Append the entire HTML of the content
+                } else {
+                    console.log('No content found.');
+                    contentContainer.innerHTML = '<p>No content found.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading the content:', error);
+                document.getElementById('content-container').innerHTML = `<p>Error loading the content: ${error.message}</p>`;
+            }
+        }
+
+        // Call the function to load the content when the script runs
+        loadContent();
+    </script>
+</body>
+</html>
