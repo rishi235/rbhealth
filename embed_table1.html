@@ -5,58 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embed Tables</title>
     <style>
-        /* Ensure the font path is correct and accessible */
         @font-face {
             font-family: 'CustomFontName';
             src: url('path/to/font.woff') format('woff');
-            /* Add additional src formats if necessary */
             font-weight: normal;
             font-style: normal;
         }
 
-        body, table, td {
-            font-family: 'CustomFontName', Arial, sans-serif; /* Fallback fonts */
-        }
-
-        /* Rest of your CSS styles for the table */
-        .simple-table-wrapper {
-            padding: 20px 0;
-        }
-        .simple-table {
-            width: 100%;
-            border: 1px solid #C9CDCF;
-            border-spacing: 0;
-        }
-        .simple-table td.cell {
-            border-right: 1px solid #C9CDCF;
-            border-bottom: 1px solid #C9CDCF;
-            word-break: break-word;
-            background-color: #FFFFFF;
-            width: 25%;
-        }
-        .simple-table td.cell .paragraph {
-            width: 90%;
-            margin: 0 5%;
-            padding-bottom: 10px;
-            padding-top: 10px;
-            text-align: center;
-        }
-        .simple-table.style-top tr:first-child td,
-        .simple-table.style-side td:first-of-type {
-            background-color: #00a499; /* Updated header color */
-        }
-        .simple-table.style-top tr:first-child td .paragraph,
-        .simple-table.style-side td:first-of-type .paragraph {
-            font-weight: 700;
-        }
-        .simple-table tr:last-child td {
-            border-bottom: none;
-        }
-        .simple-table td:last-of-type {
-            border-right: none;
-        }
-        .simple-table .empty-content-area-element {
-            padding-left: 0px !important;
+        body {
+            font-family: 'CustomFontName', Arial, sans-serif;
         }
     </style>
 </head>
@@ -65,45 +22,64 @@
     <script>
         async function loadTables() {
             const proxyUrl = 'https://api.allorigins.win/raw?url=';
-            const targetUrl = 'https://www.cheshiretravelclinic.co.uk/prices.html'; // New target URL
+            const targetUrl = 'https://www.cheshiretravelclinic.co.uk/prices.html';
 
             try {
-                console.log('Fetching data from', targetUrl);
                 const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
                 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 
-                console.log('Response received, parsing HTML...');
                 const text = await response.text();
-                console.log('Fetched HTML:', text); // Log the fetched HTML for inspection
                 
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(text, 'text/html');
                 
-                console.log('Looking for table wrappers...');
                 const tableWrappers = doc.querySelectorAll('.simple-table-wrapper');
-                console.log('Table wrappers found:', tableWrappers);
+                const styles = doc.querySelectorAll('style, link[rel="stylesheet"]');
                 
                 const tableContainer = document.getElementById('table-container');
+                
                 if (tableWrappers.length > 0) {
-                    console.log('Tables found, updating container...');
                     tableWrappers.forEach(wrapper => {
-                        tableContainer.innerHTML += wrapper.outerHTML; // Append the entire HTML of each table wrapper
+                        // Clone the wrapper to avoid direct modification of the fetched document
+                        const cleanWrapper = wrapper.cloneNode(true);
+
+                        // Remove hyperlinks from the cloned wrapper
+                        cleanWrapper.querySelectorAll('a').forEach(link => {
+                            const parent = link.parentNode;
+                            while (link.firstChild) {
+                                parent.insertBefore(link.firstChild, link);
+                            }
+                            parent.removeChild(link);
+                        });
+
+                        tableContainer.appendChild(cleanWrapper);
                     });
                 } else {
-                    console.log('No tables found.');
                     tableContainer.innerHTML = '<p>No tables found.</p>';
                 }
+                
+                // Copy styles from the source document
+                styles.forEach(style => {
+                    if (style.tagName.toLowerCase() === 'link') {
+                        const link = document.createElement('link');
+                        link.rel = 'stylesheet';
+                        link.href = style.href;
+                        document.head.appendChild(link);
+                    } else {
+                        document.head.appendChild(style.cloneNode(true));
+                    }
+                });
+
             } catch (error) {
                 console.error('Error loading the tables:', error);
                 document.getElementById('table-container').innerHTML = `<p>Error loading the tables: ${error.message}</p>`;
             }
         }
 
-        // Call the function to load the tables when the script runs
-        loadTables();
+        document.addEventListener('DOMContentLoaded', loadTables);
     </script>
 </body>
 </html>
