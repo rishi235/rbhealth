@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embed Tables</title>
     <style>
-        /* Add any necessary CSS styles here */
+        /* Ensure the font path is correct and accessible */
         @font-face {
             font-family: 'CustomFontName';
             src: url('path/to/font.woff') format('woff');
@@ -65,4 +65,45 @@
     <script>
         async function loadTables() {
             const proxyUrl = 'https://api.allorigins.win/raw?url=';
-           
+            const targetUrl = 'https://rbclinicinfo.weebly.com/';
+
+            try {
+                console.log('Fetching data from', targetUrl);
+                const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                console.log('Response received, parsing HTML...');
+                const text = await response.text();
+                console.log('Fetched HTML:', text); // Log the fetched HTML for inspection
+                
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                
+                console.log('Looking for table wrappers...');
+                const tableWrappers = doc.querySelectorAll('.simple-table-wrapper');
+                console.log('Table wrappers found:', tableWrappers);
+                
+                const tableContainer = document.getElementById('table-container');
+                if (tableWrappers.length > 0) {
+                    console.log('Tables found, updating container...');
+                    tableWrappers.forEach(wrapper => {
+                        tableContainer.innerHTML += wrapper.outerHTML; // Append the entire HTML of each table wrapper
+                    });
+                } else {
+                    console.log('No tables found.');
+                    tableContainer.innerHTML = '<p>No tables found.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading the tables:', error);
+                document.getElementById('table-container').innerHTML = `<p>Error loading the tables: ${error.message}</p>`;
+            }
+        }
+
+        // Call the function to load the tables when the script runs
+        loadTables();
+    </script>
+</body>
+</html>
