@@ -6,6 +6,19 @@
     <title>Embed Table</title>
     <style>
         /* Add any necessary CSS styles here */
+        @font-face {
+            font-family: 'CustomFontName';
+            src: url('path/to/font.woff') format('woff');
+            /* Add additional src formats if necessary */
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body, table, td {
+            font-family: 'CustomFontName', Arial, sans-serif; /* Fallback fonts */
+        }
+
+        /* Rest of your CSS styles for the table */
         .simple-table-wrapper {
             padding: 20px 0;
         }
