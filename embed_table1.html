@@ -25,7 +25,6 @@
             const targetUrl = 'https://www.cheshiretravelclinic.co.uk/prices.html';
 
             try {
-                console.log('Fetching data from', targetUrl);
                 const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
                 
                 if (!response.ok) {
@@ -38,8 +37,10 @@
                 const doc = parser.parseFromString(text, 'text/html');
                 
                 const tableWrappers = doc.querySelectorAll('.simple-table-wrapper');
+                const styles = doc.querySelectorAll('style, link[rel="stylesheet"]');
                 
                 const tableContainer = document.getElementById('table-container');
+                
                 if (tableWrappers.length > 0) {
                     tableWrappers.forEach(wrapper => {
                         tableContainer.appendChild(wrapper.cloneNode(true));
@@ -47,9 +48,7 @@
                 } else {
                     tableContainer.innerHTML = '<p>No tables found.</p>';
                 }
-
-                // Copy styles from the source document
-                const styles = doc.querySelectorAll('style, link[rel="stylesheet"]');
+                
                 styles.forEach(style => {
                     if (style.tagName.toLowerCase() === 'link') {
                         const link = document.createElement('link');
@@ -59,6 +58,14 @@
                     } else {
                         document.head.appendChild(style.cloneNode(true));
                     }
+                });
+                
+                // Insert the fetched styles into the document head
+                const fetchedHead = doc.head;
+                const currentHead = document.head;
+
+                fetchedHead.querySelectorAll('style, link[rel="stylesheet"]').forEach(style => {
+                    currentHead.appendChild(style.cloneNode(true));
                 });
 
             } catch (error) {
