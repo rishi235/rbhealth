@@ -48,11 +48,9 @@
 
                         // Remove hyperlinks from the cloned wrapper
                         cleanWrapper.querySelectorAll('a').forEach(link => {
-                            const parent = link.parentNode;
-                            while (link.firstChild) {
-                                parent.insertBefore(link.firstChild, link);
-                            }
-                            parent.removeChild(link);
+                            const span = document.createElement('span');
+                            span.innerHTML = link.innerHTML;
+                            link.parentNode.replaceChild(span, link);
                         });
 
                         tableContainer.appendChild(cleanWrapper);
