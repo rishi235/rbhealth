@@ -48,7 +48,7 @@
         }
         .simple-table.style-top tr:first-child td,
         .simple-table.style-side td:first-of-type {
-            background-color: #00A8CE;
+            background-color: #00A8CE !important;
         }
         .simple-table.style-top tr:first-child td .paragraph,
         .simple-table.style-side td:first-of-type .paragraph {
@@ -104,6 +104,12 @@
                             }
                             parent.removeChild(a);
                         });
+
+                        // Update table headers color directly in the fetched HTML
+                        element.querySelectorAll('.simple-table.style-top tr:first-child td').forEach(td => {
+                            td.style.backgroundColor = '#00A8CE';
+                        });
+
                         contentContainer.innerHTML += element.innerHTML; // Append the content
                     });
                 } else {
