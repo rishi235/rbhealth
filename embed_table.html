@@ -16,15 +16,20 @@
             try {
                 console.log('Fetching content from:', proxyUrl + targetUrl);
                 const response = await fetch(proxyUrl + targetUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
                 const data = await response.json();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(data.contents, 'text/html');
-                console.log('Fetched HTML content:', doc.documentElement.innerHTML);
-                const tableWrapper = doc.querySelector('.simple-table-wrapper');
 
+                // Log the fetched HTML content for inspection
+                console.log('Fetched HTML content:', doc.documentElement.innerHTML);
+
+                const tableWrapper = doc.querySelector('.simple-table-wrapper');
                 if (tableWrapper) {
                     console.log('Table found:', tableWrapper.outerHTML);
-                    // Inject the table HTML
                     document.getElementById('table-container').innerHTML = tableWrapper.outerHTML;
 
                     // Fetch and include the CSS
@@ -47,11 +52,12 @@
                         document.head.appendChild(styleTag);
                     });
                 } else {
+                    console.log('Table element not found in fetched content');
                     document.getElementById('table-container').innerHTML = '<p>Table not found.</p>';
                 }
             } catch (error) {
                 console.error('Error loading the table:', error);
-                document.getElementById('table-container').innerHTML = '<p>Error loading the table.</p>';
+                document.getElementById('table-container').innerHTML = `<p>Error loading the table: ${error.message}</p>`;
             }
         }
 
