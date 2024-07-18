@@ -51,11 +51,14 @@
 
     <script>
         async function loadTable() {
+            const proxyUrl = 'https://api.allorigins.win/get?url=';
+            const targetUrl = encodeURIComponent('https://rbclinicinfo.weebly.com/');
+
             try {
-                const response = await fetch('https://rbclinicinfo.weebly.com/');
-                const text = await response.text();
+                const response = await fetch(proxyUrl + targetUrl);
+                const data = await response.json();
                 const parser = new DOMParser();
-                const doc = parser.parseFromString(text, 'text/html');
+                const doc = parser.parseFromString(data.contents, 'text/html');
                 const tableWrapper = doc.querySelector('.simple-table-wrapper');
 
                 if (tableWrapper) {
