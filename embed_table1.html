@@ -38,14 +38,6 @@
             padding-top: 10px;
             text-align: center;
         }
-        .simple-table.style-top tr:first-child td,
-        .simple-table.style-side td:first-of-type {
-            background-color: #F8F8F8;
-        }
-        .simple-table.style-top tr:first-child td .paragraph,
-        .simple-table.style-side td:first-of-type .paragraph {
-            font-weight: 700;
-        }
         .simple-table tr:last-child td {
             border-bottom: none;
         }
@@ -94,11 +86,10 @@
                     tableContainer.innerHTML = '<p>No tables found.</p>';
                 }
 
-                // Apply styles manually in case they are not picked up
-                const styleTopCells = document.querySelectorAll('.simple-table.style-top tr:first-child td, .simple-table.style-side td:first-of-type');
-                styleTopCells.forEach(cell => {
-                    cell.style.backgroundColor = '#F8F8F8';
-                    cell.querySelector('.paragraph').style.fontWeight = '700';
+                // Apply styles from the source document
+                const sourceStyles = doc.querySelectorAll('style');
+                sourceStyles.forEach(style => {
+                    document.head.appendChild(style.cloneNode(true));
                 });
 
             } catch (error) {
