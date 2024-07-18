@@ -1,39 +1,52 @@
-async function loadTable() {
-    const proxyUrl = 'https://api.allorigins.win/raw?url=';
-    const targetUrl = 'https://rbclinicinfo.weebly.com/';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed Table</title>
+</head>
+<body>
+    <div id="table-container"></div>
+    <script>
+        async function loadTable() {
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            const targetUrl = 'https://rbclinicinfo.weebly.com/';
 
-    try {
-        console.log('Fetching data from', targetUrl);
-        const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
-        
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+            try {
+                console.log('Fetching data from', targetUrl);
+                const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                console.log('Response received, parsing HTML...');
+                const text = await response.text();
+                console.log('Fetched HTML:', text); // Log the fetched HTML for inspection
+                
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                
+                console.log('Looking for table wrapper...');
+                const tableWrapper = doc.querySelector('.simple-table-wrapper');
+                console.log('Table wrapper found:', tableWrapper);
+                
+                const tableContainer = document.getElementById('table-container');
+                if (tableWrapper) {
+                    console.log('Table found, updating container...');
+                    tableContainer.innerHTML = tableWrapper.outerHTML;
+                } else {
+                    console.log('Table not found.');
+                    tableContainer.innerHTML = '<p>Table not found.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading the table:', error);
+                document.getElementById('table-container').innerHTML = `<p>Error loading the table: ${error.message}</p>`;
+            }
         }
-        
-        console.log('Response received, parsing HTML...');
-        const text = await response.text();
-        console.log('Fetched HTML:', text); // Log the fetched HTML for inspection
-        
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, 'text/html');
-        
-        console.log('Looking for table wrapper...');
-        const tableWrapper = doc.querySelector('.simple-table-wrapper');
-        console.log('Table wrapper found:', tableWrapper);
-        
-        const tableContainer = document.getElementById('table-container');
-        if (tableWrapper) {
-            console.log('Table found, updating container...');
-            tableContainer.innerHTML = tableWrapper.outerHTML;
-        } else {
-            console.log('Table not found.');
-            tableContainer.innerHTML = '<p>Table not found.</p>';
-        }
-    } catch (error) {
-        console.error('Error loading the table:', error);
-        document.getElementById('table-container').innerHTML = `<p>Error loading the table: ${error.message}</p>`;
-    }
-}
 
-// Call the function to load the table when the script runs
-loadTable();
+        // Call the function to load the table when the script runs
+        loadTable();
+    </script>
+</body>
+</html>
