@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed Tables</title>
+    <style>
+        /* Ensure the font path is correct and accessible */
+        @font-face {
+            font-family: 'CustomFontName';
+            src: url('path/to/font.woff') format('woff');
+            /* Add additional src formats if necessary */
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body, table, td {
+            font-family: 'CustomFontName', Arial, sans-serif; /* Fallback fonts */
+        }
+
+        /* Rest of your CSS styles for the table */
+        .simple-table-wrapper {
+            padding: 20px 0;
+        }
+        .simple-table {
+            width: 100%;
+            border: 1px solid #C9CDCF;
+            border-spacing: 0;
+        }
+        .simple-table td.cell {
+            border-right: 1px solid #C9CDCF;
+            border-bottom: 1px solid #C9CDCF;
+            word-break: break-word;
+            background-color: #FFFFFF;
+            width: 25%;
+        }
+        .simple-table td.cell .paragraph {
+            width: 90%;
+            margin: 0 5%;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            text-align: center;
+        }
+        .simple-table tr:first-child td {
+            background-color: var(--header-color);
+        }
+        .simple-table tr:first-child td .paragraph {
+            font-weight: 700;
+        }
+        .simple-table tr:last-child td {
+            border-bottom: none;
+        }
+        .simple-table td:last-of-type {
+            border-right: none;
+        }
+        .simple-table .empty-content-area-element {
+            padding-left: 0px !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="table-container"></div>
+    <script>
+        async function loadTables() {
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            const targetUrl = 'https://www.cheshiretravelclinic.co.uk/prices.html'; // New target URL
+            const colors = ['#00A8CE', '#00A499'];
+            
+            try {
+                console.log('Fetching data from', targetUrl);
+                const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                console.log('Response received, parsing HTML...');
+                const text = await response.text();
+                console.log('Fetched HTML:', text); // Log the fetched HTML for inspection
+                
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                
+                console.log('Looking for table wrappers...');
+                const tableWrappers = doc.querySelectorAll('.simple-table-wrapper');
+                console.log('Table wrappers found:', tableWrappers);
+                
+                const tableContainer = document.getElementById('table-container');
+                if (tableWrappers.length > 0) {
+                    console.log('Tables found, updating container...');
+                    tableWrappers.forEach((wrapper, index) => {
+                        // Remove hyperlinks
+                        wrapper.querySelectorAll('a').forEach(a => {
+                            const parent = a.parentNode;
+                            while (a.firstChild) {
+                                parent.insertBefore(a.firstChild, a);
+                            }
+                            parent.removeChild(a);
+                        });
+                        // Set alternating header colors
+                        wrapper.querySelector('.simple-table').style.setProperty('--header-color', colors[index % 2]);
+                        tableContainer.innerHTML += wrapper.outerHTML; // Append the entire HTML of each table wrapper
+                    });
+                } else {
+                    console.log('No tables found.');
+                    tableContainer.innerHTML = '<p>No tables found.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading the tables:', error);
+                document.getElementById('table-container').innerHTML = `<p>Error loading the tables: ${error.message}</p>`;
+            }
+        }
+
+        // Call the function to load the tables when the script runs
+        loadTables();
+    </script>
+</body>
+</html>
