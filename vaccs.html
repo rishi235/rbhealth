@@ -37,7 +37,6 @@
             border-bottom: 1px solid #C9CDCF;
             word-break: break-word;
             background-color: #FFFFFF;
-            width: 50%;
         }
         .simple-table td.cell .paragraph {
             width: 90%;
@@ -105,10 +104,23 @@
                             parent.removeChild(a);
                         });
 
-                        // Update table headers color directly in the fetched HTML
-                        element.querySelectorAll('.simple-table.style-top tr:first-child td').forEach(td => {
-                            td.style.backgroundColor = '#00A8CE';
+                        // Specifically target the table with the "Vaccine" title
+                        const vaccineTable = Array.from(element.querySelectorAll('.simple-table.style-top')).find(table => {
+                            return table.querySelector('tr:first-child td:first-child .paragraph').textContent.trim() === 'Vaccine';
                         });
+
+                        if (vaccineTable) {
+                            // Update table headers color and column widths
+                            vaccineTable.querySelectorAll('tr:first-child td').forEach(td => {
+                                td.style.backgroundColor = '#00A8CE';
+                            });
+                            vaccineTable.querySelectorAll('tr td:first-child').forEach(td => {
+                                td.style.width = '25%';
+                            });
+                            vaccineTable.querySelectorAll('tr td:nth-child(2)').forEach(td => {
+                                td.style.width = '75%';
+                            });
+                        }
 
                         contentContainer.innerHTML += element.innerHTML; // Append the content
                     });
