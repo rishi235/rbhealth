@@ -1,73 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinic Prices - Dynamic Table</title>
-</head>
-<body>
-    <div id="table-container" class="simple-table-wrapper"></div>
+async function loadTable() {
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const targetUrl = 'https://rbclinicinfo.weebly.com/';
 
-    <script>
-        async function loadTable() {
-            const proxyUrl = 'https://api.allorigins.win/get?url=';
-            const targetUrl = encodeURIComponent('https://rbclinicinfo.weebly.com/');
+    try {
+        const response = await fetch(proxyUrl + targetUrl);
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const tableWrapper = doc.querySelector('.simple-table-wrapper');
 
-            try {
-                console.log('Fetching content from:', proxyUrl + targetUrl);
-                const response = await fetch(proxyUrl + targetUrl);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(data.contents, 'text/html');
-
-                // Log the entire fetched HTML content for inspection
-                console.log('Fetched HTML content:', doc.documentElement.outerHTML);
-
-                // Find and log the table wrapper
-                const tableWrapper = doc.querySelector('#element-f5e044ff-0c10-499c-8f88-c98a9d26aeff .simple-table-wrapper');
-                if (tableWrapper) {
-                    console.log('Table found:', tableWrapper.outerHTML);
-                    document.getElementById('table-container').innerHTML = tableWrapper.outerHTML;
-
-                    // Fetch and include the CSS
-                    const stylesheets = doc.querySelectorAll('link[rel="stylesheet"]');
-                    stylesheets.forEach(stylesheet => {
-                        const href = stylesheet.href.startsWith('http') ? stylesheet.href : new URL(stylesheet.getAttribute('href'), 'https://rbclinicinfo.weebly.com').href;
-                        console.log('Adding stylesheet:', href);
-                        const link = document.createElement('link');
-                        link.rel = 'stylesheet';
-                        link.href = href;
-                        document.head.appendChild(link);
-                    });
-
-                    // Fetch and include inline styles
-                    const styles = doc.querySelectorAll('style');
-                    styles.forEach(style => {
-                        console.log('Adding inline style:', style.innerHTML);
-                        const styleContent = style.innerHTML;
-                        const styleTag = document.createElement('style');
-                        // Move @import rules to the top
-                        const importRules = styleContent.match(/@import[^;]+;/g) || [];
-                        const otherStyles = styleContent.replace(/@import[^;]+;/g, '');
-                        styleTag.innerHTML = importRules.join('\n') + '\n' + otherStyles;
-                        document.head.appendChild(styleTag);
-                    });
-                } else {
-                    console.log('Table element not found in fetched content');
-                    document.getElementById('table-container').innerHTML = '<p>Table not found.</p>';
-                }
-
-            } catch (error) {
-                console.error('Error loading the table:', error);
-                document.getElementById('table-container').innerHTML = `<p>Error loading the table: ${error.message}</p>`;
-            }
+        if (tableWrapper) {
+            document.getElementById('table-container').innerHTML = tableWrapper.outerHTML;
+        } else {
+            document.getElementById('table-container').innerHTML = '<p>Table not found.</p>';
         }
-
-        loadTable();
-    </script>
-</body>
-</html>
+    } catch (error) {
+        console.error('Error loading the table:', error);
+        document.getElementById('table-container').innerHTML = '<p>Error loading the table.</p>';
+    }
+}
