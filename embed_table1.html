@@ -86,10 +86,17 @@
                     tableContainer.innerHTML = '<p>No tables found.</p>';
                 }
 
-                // Copy all style elements from the source document to ensure styling is preserved
+                // Apply inline styles and copy external stylesheets
                 const sourceStyles = doc.querySelectorAll('style, link[rel="stylesheet"]');
                 sourceStyles.forEach(style => {
-                    document.head.appendChild(style.cloneNode(true));
+                    if (style.tagName.toLowerCase() === 'link') {
+                        const linkElement = document.createElement('link');
+                        linkElement.rel = 'stylesheet';
+                        linkElement.href = style.href;
+                        document.head.appendChild(linkElement);
+                    } else {
+                        document.head.appendChild(style.cloneNode(true));
+                    }
                 });
 
             } catch (error) {
