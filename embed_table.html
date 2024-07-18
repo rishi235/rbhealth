@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinic Prices - Dynamic Table</title>
+    <style>
+        /* Include any custom styles here, if necessary */
+    </style>
 </head>
 <body>
     <div id="table-container" class="simple-table-wrapper"></div>
 
     <script>
         async function loadTable() {
-            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            const proxyUrl = 'https://api.allorigins.win/get?url=';
             const targetUrl = encodeURIComponent('https://rbclinicinfo.weebly.com/');
 
             try {
                 const response = await fetch(proxyUrl + targetUrl);
-                const text = await response.text();
+                const data = await response.json();
                 const parser = new DOMParser();
-                const doc = parser.parseFromString(text, 'text/html');
+                const doc = parser.parseFromString(data.contents, 'text/html');
                 const tableWrapper = doc.querySelector('.simple-table-wrapper');
                 
                 if (tableWrapper) {
