@@ -93,6 +93,14 @@
                     console.log('No tables found.');
                     tableContainer.innerHTML = '<p>No tables found.</p>';
                 }
+
+                // Apply styles manually in case they are not picked up
+                const styleTopCells = document.querySelectorAll('.simple-table.style-top tr:first-child td, .simple-table.style-side td:first-of-type');
+                styleTopCells.forEach(cell => {
+                    cell.style.backgroundColor = '#F8F8F8';
+                    cell.querySelector('.paragraph').style.fontWeight = '700';
+                });
+
             } catch (error) {
                 console.error('Error loading the tables:', error);
                 document.getElementById('table-container').innerHTML = `<p>Error loading the tables: ${error.message}</p>`;
