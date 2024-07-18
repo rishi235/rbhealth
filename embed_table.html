@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinic Prices - Dynamic Table</title>
-    <style>
-        /* Include any custom styles here, if necessary */
-    </style>
 </head>
 <body>
     <div id="table-container" class="simple-table-wrapper"></div>
@@ -22,7 +19,7 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(data.contents, 'text/html');
                 const tableWrapper = doc.querySelector('.simple-table-wrapper');
-                
+
                 if (tableWrapper) {
                     // Inject the table HTML
                     document.getElementById('table-container').innerHTML = tableWrapper.outerHTML;
