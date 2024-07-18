@@ -15,10 +15,6 @@
         body {
             font-family: 'CustomFontName', Arial, sans-serif;
         }
-
-        .simple-table-wrapper {
-            padding: 20px 0;
-        }
     </style>
 </head>
 <body>
@@ -36,36 +32,30 @@
                     throw new Error('Network response was not ok');
                 }
                 
-                console.log('Response received, parsing HTML...');
                 const text = await response.text();
-                console.log('Fetched HTML:', text);
                 
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(text, 'text/html');
                 
-                console.log('Looking for table wrappers...');
                 const tableWrappers = doc.querySelectorAll('.simple-table-wrapper');
-                console.log('Table wrappers found:', tableWrappers.length);
                 
                 const tableContainer = document.getElementById('table-container');
                 if (tableWrappers.length > 0) {
-                    console.log('Tables found, updating container...');
                     tableWrappers.forEach(wrapper => {
                         tableContainer.appendChild(wrapper.cloneNode(true));
                     });
                 } else {
-                    console.log('No tables found.');
                     tableContainer.innerHTML = '<p>No tables found.</p>';
                 }
 
-                // Apply inline styles and copy external stylesheets
-                const sourceStyles = doc.querySelectorAll('style, link[rel="stylesheet"]');
-                sourceStyles.forEach(style => {
+                // Copy styles from the source document
+                const styles = doc.querySelectorAll('style, link[rel="stylesheet"]');
+                styles.forEach(style => {
                     if (style.tagName.toLowerCase() === 'link') {
-                        const linkElement = document.createElement('link');
-                        linkElement.rel = 'stylesheet';
-                        linkElement.href = style.href;
-                        document.head.appendChild(linkElement);
+                        const link = document.createElement('link');
+                        link.rel = 'stylesheet';
+                        link.href = style.href;
+                        document.head.appendChild(link);
                     } else {
                         document.head.appendChild(style.cloneNode(true));
                     }
