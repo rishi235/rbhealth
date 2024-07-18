@@ -49,7 +49,7 @@
                 const doc = parser.parseFromString(text, 'text/html');
                 
                 console.log('Looking for content...');
-                const content = doc.querySelector('.content'); // Adjust the selector as needed
+                const content = doc.querySelector('main'); // Adjust the selector as needed
                 console.log('Content found:', content);
                 
                 const contentContainer = document.getElementById('content-container');
