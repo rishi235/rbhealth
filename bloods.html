@@ -49,21 +49,24 @@
                 const doc = parser.parseFromString(text, 'text/html');
                 
                 console.log('Looking for content...');
-                const content = doc.querySelector('main'); // Adjust the selector as needed
-                console.log('Content found:', content);
-                
                 const contentContainer = document.getElementById('content-container');
-                if (content) {
+                
+                // Select the main content from the provided HTML
+                const contentElements = doc.querySelectorAll("#wsite-content .wsite-section-elements");
+
+                if (contentElements.length > 0) {
                     console.log('Content found, updating container...');
-                    // Remove hyperlinks
-                    content.querySelectorAll('a').forEach(a => {
-                        const parent = a.parentNode;
-                        while (a.firstChild) {
-                            parent.insertBefore(a.firstChild, a);
-                        }
-                        parent.removeChild(a);
+                    contentElements.forEach(element => {
+                        // Remove hyperlinks
+                        element.querySelectorAll('a').forEach(a => {
+                            const parent = a.parentNode;
+                            while (a.firstChild) {
+                                parent.insertBefore(a.firstChild, a);
+                            }
+                            parent.removeChild(a);
+                        });
+                        contentContainer.innerHTML += element.innerHTML; // Append the content
                     });
-                    contentContainer.innerHTML = content.innerHTML; // Append the entire HTML of the content
                 } else {
                     console.log('No content found.');
                     contentContainer.innerHTML = '<p>No content found.</p>';
