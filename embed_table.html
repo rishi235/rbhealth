@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinic Prices - Table</title>
+    <title>Clinic Prices - Dynamic Table</title>
     <style>
         .simple-table-wrapper {
             padding: 20px 0;
@@ -47,27 +47,29 @@
     </style>
 </head>
 <body>
-    <div class="simple-table-wrapper">
-        <table class="simple-table style-top">
-            <tr>
-                <td class="cell"><div class="paragraph"></div></td>
-                <td class="cell"><div class="paragraph"></div></td>
-                <td class="cell"><div class="paragraph"></div></td>
-                <td class="cell"><div class="paragraph"></div></td>
-            </tr>
-            <tr>
-                <td class="cell"><div class="paragraph"></div></td>
-                <td class="cell"><div class="paragraph"></div></td>
-                <td class="cell"><div class="paragraph"></div></td>
-                <td class="cell"><div class="paragraph"></div></td>
-            </tr>
-            <tr>
-                <td class="cell"><div class="paragraph"></div></td>
-                <td class="cell"><div class="paragraph"></div></td>
-                <td class="cell"><div class="paragraph"></div></td>
-                <td class="cell"><div class="paragraph"></div></td>
-            </tr>
-        </table>
-    </div>
+    <div id="table-container" class="simple-table-wrapper"></div>
+
+    <script>
+        async function loadTable() {
+            try {
+                const response = await fetch('https://rbclinicinfo.weebly.com/');
+                const text = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const tableWrapper = doc.querySelector('.simple-table-wrapper');
+
+                if (tableWrapper) {
+                    document.getElementById('table-container').innerHTML = tableWrapper.outerHTML;
+                } else {
+                    document.getElementById('table-container').innerHTML = '<p>Table not found.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading the table:', error);
+                document.getElementById('table-container').innerHTML = '<p>Error loading the table.</p>';
+            }
+        }
+
+        loadTable();
+    </script>
 </body>
 </html>
