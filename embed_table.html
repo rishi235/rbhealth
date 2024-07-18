@@ -24,10 +24,11 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(data.contents, 'text/html');
 
-                // Log the fetched HTML content for inspection
-                console.log('Fetched HTML content:', doc.documentElement.innerHTML);
+                // Log the entire fetched HTML content for inspection
+                console.log('Fetched HTML content:', doc.documentElement.outerHTML);
 
-                const tableWrapper = doc.querySelector('.simple-table-wrapper');
+                // Find and log the table wrapper
+                const tableWrapper = doc.querySelector('#element-f5e044ff-0c10-499c-8f88-c98a9d26aeff .simple-table-wrapper');
                 if (tableWrapper) {
                     console.log('Table found:', tableWrapper.outerHTML);
                     document.getElementById('table-container').innerHTML = tableWrapper.outerHTML;
@@ -55,6 +56,7 @@
                     console.log('Table element not found in fetched content');
                     document.getElementById('table-container').innerHTML = '<p>Table not found.</p>';
                 }
+
             } catch (error) {
                 console.error('Error loading the table:', error);
                 document.getElementById('table-container').innerHTML = `<p>Error loading the table: ${error.message}</p>`;
