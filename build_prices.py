@@ -1,15 +1,18 @@
 """Build prices.json for the pharmacy websites from the Google Sheet.
 
-Source: the Sheet's "Broadcast" tab (Category, Product, Retail), published to
-the web as CSV. Only these three columns are ever read, so costs and margins
-can never reach the websites.
+Sources (both published to the web as CSV):
+  - "Broadcast" tab: Category, Product, Retail. Only these three columns are
+    ever read, so costs and margins can never reach the websites.
+  - "Website Stores" tab: one row per website with tick boxes for which
+    services that store offers. Unticked services are hidden on that site.
 
 Usage:
-  python build_prices.py <csv-url-or-file> [prices.json]
+  python build_prices.py <prices-csv-url-or-file> [prices.json] [stores-csv-url-or-file]
 
-Safety: if the source looks wrong (download failed, columns renamed, too few
-rows) the script exits with an error and leaves the existing prices.json in
-place, so the websites keep showing the last good prices.
+Safety: if the price source looks wrong (download failed, columns renamed, too
+few rows) the script exits with an error and leaves the existing prices.json in
+place, so the websites keep showing the last good prices. If only the stores
+source fails, the previous store settings are kept.
 """
 import csv
 import io
@@ -26,6 +29,25 @@ CATEGORY_GUESSES = [
     (r"sildenafil|vardenafil|tadalafil", "Erectile Dysfunction"),
     (r"otomize|ear ", "Ear Infection"),
 ]
+
+# Service groups = tick-box columns on the "Website Stores" tab (till depts in brackets).
+GROUP_COLUMNS = {
+    "bloods": "blood tests",      # CLB
+    "travel": "travel",           # CLI
+    "weightloss": "weight loss",  # CLW
+    "other": "other treatments",  # everything else
+}
+
+
+def group_for(category):
+    c = category.lower()
+    if "blood" in c:
+        return "bloods"
+    if "travel" in c:
+        return "travel"
+    if "weight" in c:
+        return "weightloss"
+    return "other"
 
 
 def read_source(src):
@@ -49,7 +71,14 @@ def clean_text(value):
     return re.sub(r"\s+", " ", (value or "").replace("​", "")).strip()
 
 
-def build(text):
+def site_key(value):
+    """'https://www.Hirshmanspharmacy.co.uk/x' -> 'hirshmanspharmacy.co.uk'"""
+    v = clean_text(value).lower()
+    v = re.sub(r"^https?://", "", v).split("/")[0]
+    return re.sub(r"^www\.", "", v)
+
+
+def build_prices(text):
     rows = list(csv.reader(io.StringIO(text)))
     header = [clean_text(h).lower() for h in rows[0]]
     try:
@@ -76,29 +105,58 @@ def build(text):
     count = sum(len(v) for v in categories.values())
     if count < MIN_ITEMS:
         sys.exit("Only %d priced items found (expected at least %d) - not updating." % (count, MIN_ITEMS))
-    return {
-        "success": True,
-        "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "count": count,
-        "categorized": categories,
-    }
+    return categories, count
+
+
+def build_stores(text):
+    rows = list(csv.reader(io.StringIO(text)))
+    header = [clean_text(h).lower() for h in rows[0]]
+    i_site = next(i for i, h in enumerate(header) if h.startswith("website"))
+    cols = {g: next(i for i, h in enumerate(header) if h.startswith(name)) for g, name in GROUP_COLUMNS.items()}
+    stores = {}
+    for r in rows[1:]:
+        if len(r) <= i_site or not site_key(r[i_site]):
+            continue
+        ticked = [g for g, i in cols.items() if i < len(r) and clean_text(r[i]).lower() in ("true", "yes", "y", "1", "x", "✓")]
+        stores[site_key(r[i_site])] = ticked
+    if not stores:
+        raise ValueError("no stores found")
+    return stores
 
 
 def main():
     src = sys.argv[1]
     out = sys.argv[2] if len(sys.argv) > 2 else "prices.json"
-    data = build(read_source(src))
+    stores_src = sys.argv[3] if len(sys.argv) > 3 else None
+
     try:
         with open(out, encoding="utf-8") as f:
             old = json.load(f)
-        if old.get("categorized") == data["categorized"]:
-            print("No price changes.")
-            return
     except (OSError, ValueError):
-        pass
+        old = {}
+
+    categories, count = build_prices(read_source(src))
+    stores = old.get("stores", {})
+    if stores_src:
+        try:
+            stores = build_stores(read_source(stores_src))
+        except Exception as e:  # keep previous store settings rather than failing
+            print("Could not read stores (%s) - keeping previous settings." % e)
+
+    data = {
+        "success": True,
+        "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "count": count,
+        "categorized": categories,
+        "groups": {c: group_for(c) for c in categories},
+        "stores": stores,
+    }
+    if all(old.get(k) == data[k] for k in ("categorized", "groups", "stores")):
+        print("No changes.")
+        return
     with open(out, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
-    print("Wrote %d items in %d categories to %s" % (data["count"], len(data["categorized"]), out))
+    print("Wrote %d items in %d categories, %d stores to %s" % (count, len(categories), len(stores), out))
 
 
 if __name__ == "__main__":

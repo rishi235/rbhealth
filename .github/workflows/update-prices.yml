@@ -19,9 +19,10 @@ jobs:
       - name: Build prices.json
         env:
           PRICES_CSV_URL: ${{ vars.PRICES_CSV_URL }}
+          STORES_CSV_URL: ${{ vars.STORES_CSV_URL }}
         run: |
           if [ -z "$PRICES_CSV_URL" ]; then echo "PRICES_CSV_URL repository variable is not set yet"; exit 0; fi
-          python build_prices.py "$PRICES_CSV_URL" prices.json
+          python build_prices.py "$PRICES_CSV_URL" prices.json "${STORES_CSV_URL:-stores-source.csv}"
       - name: Commit if prices changed
         run: |
           if git diff --quiet -- prices.json; then echo "No changes"; exit 0; fi

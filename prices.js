@@ -82,10 +82,13 @@
         thead.appendChild(hr);
         table.appendChild(thead);
 
+        // Services this store offers, from the Sheet's "Website Stores" tab. Unknown store = show all.
+        var offered = (data.stores || {})[cfg.store];
         var tbody = el('tbody'), offers = [];
         Object.keys(data.categorized).forEach(function (cat) {
             var items = data.categorized[cat] || [];
             if (!items.length) return;
+            if (offered && data.groups && offered.indexOf(data.groups[cat]) < 0) return;
             var tr = el('tr', 'tc-category-header'), td = el('td', null, cat);
             td.colSpan = 3;
             tr.appendChild(td);
@@ -129,6 +132,7 @@
         var d = box.dataset;
         return {
             inFrame: inFrame,
+            store: (d.store || new URL(origin).hostname).toLowerCase().replace(/^www\./, ''),
             name: d.name || '',
             campaign: d.campaign || 'pharmacy',
             booking: d.booking || origin + (/tiffenbergs/.test(origin) ? '/book.html' : '/book-now.html')

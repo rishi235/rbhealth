@@ -1,6 +1,6 @@
 {
  "success": true,
- "updated": "2026-10-15T13:47:25Z",
+ "updated": "2026-10-15T14:11:33Z",
  "count": 106,
  "categorized": {
   "Blood Tests": [
@@ -444,6 +444,91 @@
     "productName": "Dapoxteine (Priligy) 60mg tabs",
     "retail": "£31.99"
    }
+  ]
+ },
+ "groups": {
+  "Blood Tests": "bloods",
+  "Travel - Tablets": "travel",
+  "Weight Loss": "weightloss",
+  "Other Services": "other",
+  "Travel vaccines": "travel",
+  "Erectile Dysfunction": "other",
+  "Ear Infection": "other",
+  "Smoking Cessation": "other",
+  "Premature Ejaculation": "other"
+ },
+ "stores": {
+  "cheshiretravelclinic.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
+  ],
+  "cherrylanepharmacy.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
+  ],
+  "colemanandleighspharmacy.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
+  ],
+  "fishlockpharmacy.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
+  ],
+  "gordonshortchemist.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
+  ],
+  "hirshmanspharmacy.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
+  ],
+  "mccannspharmacy.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
+  ],
+  "riddingspharmacy.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
+  ],
+  "scorah-chemists.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
+  ],
+  "skchemist.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
+  ],
+  "smarttschemist.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
+  ],
+  "tiffenbergschemist.co.uk": [
+   "bloods",
+   "travel",
+   "weightloss",
+   "other"
   ]
  }
 }
