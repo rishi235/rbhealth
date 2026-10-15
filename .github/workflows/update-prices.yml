@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: "17 * * * *"   # every hour
   workflow_dispatch: {}     # "Run workflow" button for an instant update
+  push:
+    paths:
+      - .github/workflows/update-prices.yml
+      - build_prices.py
 
 permissions:
   contents: write
@@ -18,11 +22,10 @@ jobs:
           python-version: "3.12"
       - name: Build prices.json
         env:
-          PRICES_CSV_URL: ${{ vars.PRICES_CSV_URL }}
-          STORES_CSV_URL: ${{ vars.STORES_CSV_URL }}
-        run: |
-          if [ -z "$PRICES_CSV_URL" ]; then echo "PRICES_CSV_URL repository variable is not set yet"; exit 0; fi
-          python build_prices.py "$PRICES_CSV_URL" prices.json "${STORES_CSV_URL:-stores-source.csv}"
+          # "Publish to web" CSV links for the Sheet's Broadcast and Website Stores tabs
+          PRICES_CSV_URL: https://docs.google.com/spreadsheets/d/e/2PACX-1vTH9fEgOXvTWnueIlSmJafTRAjA7ulxbKrS42D074DcRAEQalZgjoAdIc_iHm338x6JBmcrvNt3302Z/pub?gid=1661335109&single=true&output=csv
+          STORES_CSV_URL: https://docs.google.com/spreadsheets/d/e/2PACX-1vTH9fEgOXvTWnueIlSmJafTRAjA7ulxbKrS42D074DcRAEQalZgjoAdIc_iHm338x6JBmcrvNt3302Z/pub?gid=2119557095&single=true&output=csv
+        run: python build_prices.py "$PRICES_CSV_URL" prices.json "$STORES_CSV_URL"
       - name: Commit if prices changed
         run: |
           if git diff --quiet -- prices.json; then echo "No changes"; exit 0; fi
