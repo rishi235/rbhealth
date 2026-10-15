@@ -1,7 +1,7 @@
 {
  "success": true,
- "updated": "2026-10-15T14:44:00Z",
- "count": 106,
+ "updated": "2026-10-15T18:20:53Z",
+ "count": 107,
  "categorized": {
   "Blood Tests": [
    {
@@ -231,19 +231,19 @@
   ],
   "Other Services": [
    {
-    "productName": "Jet Lag - Melatonin (Circadin) - 10 tablets",
-    "retail": "£20.00"
+    "productName": "Jet Lag Melatonin tablets (per tablet)",
+    "retail": "£2.00"
    },
    {
     "productName": "Travellers Diarrhoea (Azithromycin) - 3 days",
-    "retail": "£10.00"
+    "retail": "£24.99"
    },
    {
-    "productName": "Period Delay - 30 tablets",
-    "retail": "£19.99"
+    "productName": "Period Delay – Norethisterone 5mg (Per Tablet)",
+    "retail": "£0.70"
    },
    {
-    "productName": "Acetazolamide Tabs (per tablet)",
+    "productName": "Altitude Sickness Acetazolamide (per tablet)",
     "retail": "£2.00"
    }
   ],
@@ -278,15 +278,19 @@
    },
    {
     "productName": "Hepatitis A & B Combined (Adult)",
-    "retail": "£56.00"
+    "retail": "£80.00"
+   },
+   {
+    "productName": "Hepatitis A & B Combined (Paed)",
+    "retail": "£55.00"
    },
    {
     "productName": "Hepatitis A (Adult)",
-    "retail": "£40.00"
+    "retail": "£50.00"
    },
    {
     "productName": "Hepatitis A (Child)",
-    "retail": "£35.00"
+    "retail": "£40.00"
    },
    {
     "productName": "Hepatitis B (Adult)",
@@ -338,11 +342,11 @@
    },
    {
     "productName": "Tick Borne Encephalitis (Adult)",
-    "retail": "£50.00"
+    "retail": "£65.00"
    },
    {
     "productName": "Tick Borne Encephalitis (Child)",
-    "retail": "£50.00"
+    "retail": "£65.00"
    },
    {
     "productName": "Typhoid",
@@ -358,11 +362,11 @@
    },
    {
     "productName": "Yellow Fever (including certificate)",
-    "retail": "£60.00"
+    "retail": "£75.00"
    },
    {
     "productName": "Yellow Fever Replacement Certificate",
-    "retail": "£10.00"
+    "retail": "£20.00"
    }
   ],
   "Erectile Dysfunction": [
