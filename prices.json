@@ -1,6 +1,6 @@
 {
  "success": true,
- "updated": "2026-10-15T14:11:33Z",
+ "updated": "2026-10-15T14:44:00Z",
  "count": 106,
  "categorized": {
   "Blood Tests": [
@@ -243,8 +243,8 @@
     "retail": "£19.99"
    },
    {
-    "productName": "Acetazolamide Tabs x10",
-    "retail": "£10.00"
+    "productName": "Acetazolamide Tabs (per tablet)",
+    "retail": "£2.00"
    }
   ],
   "Travel vaccines": [
