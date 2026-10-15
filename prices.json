@@ -1,0 +1,449 @@
+{
+ "success": true,
+ "updated": "2026-10-15T13:47:25Z",
+ "count": 106,
+ "categorized": {
+  "Blood Tests": [
+   {
+    "productName": "Allergy Complete - 295 allergens",
+    "retail": "£299.00"
+   },
+   {
+    "productName": "Anaemia Profile",
+    "retail": "£59.00"
+   },
+   {
+    "productName": "Baseline Test",
+    "retail": "£29.00"
+   },
+   {
+    "productName": "Cholesterol / Lipid Profile",
+    "retail": "£29.00"
+   },
+   {
+    "productName": "Diabetes Test (diabetic Profile 1 - Glucose & HBA1c)",
+    "retail": "£29.00"
+   },
+   {
+    "productName": "Erectile Dysfunction",
+    "retail": "£79.00"
+   },
+   {
+    "productName": "Female Hormone",
+    "retail": "£79.00"
+   },
+   {
+    "productName": "Full Blood Count Test (Haematology Profile)",
+    "retail": "£29.00"
+   },
+   {
+    "productName": "Full Iron Status Profile (listed as Iron status profile)",
+    "retail": "£59.00"
+   },
+   {
+    "productName": "Full Thyroid Profile",
+    "retail": "£79.00"
+   },
+   {
+    "productName": "General Health Test",
+    "retail": "£79.00"
+   },
+   {
+    "productName": "Heart Health & Diabetes Profile",
+    "retail": "£79.00"
+   },
+   {
+    "productName": "Heart Health Profile",
+    "retail": "£79.00"
+   },
+   {
+    "productName": "Kidney Function Test",
+    "retail": "£29.00"
+   },
+   {
+    "productName": "Liver Function Test",
+    "retail": "£29.00"
+   },
+   {
+    "productName": "Male Hormone",
+    "retail": "£79.00"
+   },
+   {
+    "productName": "Prostate Profile",
+    "retail": "£79.00"
+   },
+   {
+    "productName": "Sports Fitness Test",
+    "retail": "£109.00"
+   },
+   {
+    "productName": "Tiredness & Fatigue",
+    "retail": "£109.00"
+   },
+   {
+    "productName": "Vitamin B12 Test",
+    "retail": "£29.00"
+   },
+   {
+    "productName": "Vitamin Profile (Vit D, B12 & Folate)",
+    "retail": "£79.00"
+   },
+   {
+    "productName": "Well Man Premier Plus",
+    "retail": "£149.00"
+   },
+   {
+    "productName": "Well Person Premier Plus Test",
+    "retail": "£109.00"
+   },
+   {
+    "productName": "Well Woman Premier Plus Profile",
+    "retail": "£149.00"
+   }
+  ],
+  "Travel - Tablets": [
+   {
+    "productName": "Doxycycline (per capsules)",
+    "retail": "£0.50"
+   },
+   {
+    "productName": "Mefloquine (per tablet)",
+    "retail": "£3.50"
+   },
+   {
+    "productName": "Atovaquone/Proguanil (Generic Malarone) per tab",
+    "retail": "£2.00"
+   },
+   {
+    "productName": "Atovaquone/Proguanil Paediatric (Generic Malarone) per tab",
+    "retail": "£1.00"
+   },
+   {
+    "productName": "Malarone (Single Tab)",
+    "retail": "£3.50"
+   },
+   {
+    "productName": "Malarone Paediatric (per tablet)",
+    "retail": "£1.50"
+   }
+  ],
+  "Weight Loss": [
+   {
+    "productName": "Orlistat",
+    "retail": "£50.00"
+   },
+   {
+    "productName": "Saxenda - 1 pen",
+    "retail": "£79.99"
+   },
+   {
+    "productName": "Saxenda - 5 Pens",
+    "retail": "£295.00"
+   },
+   {
+    "productName": "Mounjaro -2.5mg - 1 pen",
+    "retail": "£179.00"
+   },
+   {
+    "productName": "Mounjaro -5mg - 1 pen",
+    "retail": "£199.00"
+   },
+   {
+    "productName": "Mounjaro - 7.5mg - 1 pen",
+    "retail": "£249.00"
+   },
+   {
+    "productName": "Mounjaro - 10mg - 1 pen",
+    "retail": "£289.00"
+   },
+   {
+    "productName": "Mounjaro - 12.5mg - 1 pen",
+    "retail": "£299.00"
+   },
+   {
+    "productName": "Mounjaro - 15mg - 1 pen",
+    "retail": "£299.00"
+   },
+   {
+    "productName": "Wegovy - 0.25mg",
+    "retail": "£129.00"
+   },
+   {
+    "productName": "Wegovy - 0.5mg",
+    "retail": "£139.00"
+   },
+   {
+    "productName": "Wegovy - 1mg",
+    "retail": "£149.00"
+   },
+   {
+    "productName": "Wegovy - 1.7mg",
+    "retail": "£199.00"
+   },
+   {
+    "productName": "Wegovy - 2.4mg",
+    "retail": "£249.00"
+   },
+   {
+    "productName": "Wegovy - 7.2mg",
+    "retail": "£279.00"
+   },
+   {
+    "productName": "Wegovy - 1.5mg - 30 tablets",
+    "retail": "£99.00"
+   },
+   {
+    "productName": "Wegovy - 4mg - 30 tablets",
+    "retail": "£119.00"
+   },
+   {
+    "productName": "Wegovy - 9mg - 30 tablets",
+    "retail": "£149.00"
+   },
+   {
+    "productName": "Wegovy - 25mg - 30 tablets",
+    "retail": "£219.00"
+   },
+   {
+    "productName": "Foundayo - 0.8mg - 30 tablets",
+    "retail": "£99.00"
+   },
+   {
+    "productName": "Foundayo - 2.5mg - 30 tablets",
+    "retail": "£119.00"
+   },
+   {
+    "productName": "Foundayo - 5.5mg - 30 tablets",
+    "retail": "£139.00"
+   },
+   {
+    "productName": "Foundayo - 9mg - 30 tablets",
+    "retail": "£159.00"
+   },
+   {
+    "productName": "Foundayo - 14.5mg - 30 tablets",
+    "retail": "£179.00"
+   },
+   {
+    "productName": "Foundayo - 17.2mg - 30 tablets",
+    "retail": "£199.00"
+   }
+  ],
+  "Other Services": [
+   {
+    "productName": "Jet Lag - Melatonin (Circadin) - 10 tablets",
+    "retail": "£20.00"
+   },
+   {
+    "productName": "Travellers Diarrhoea (Azithromycin) - 3 days",
+    "retail": "£10.00"
+   },
+   {
+    "productName": "Period Delay - 30 tablets",
+    "retail": "£19.99"
+   },
+   {
+    "productName": "Acetazolamide Tabs x10",
+    "retail": "£10.00"
+   }
+  ],
+  "Travel vaccines": [
+   {
+    "productName": "Chicken Pox Vaccine",
+    "retail": "£75.00"
+   },
+   {
+    "productName": "Chicken Pox Vaccine (Two Dose)",
+    "retail": "£140.00"
+   },
+   {
+    "productName": "Chikungunya Vaccine",
+    "retail": "£185.00"
+   },
+   {
+    "productName": "Cholera Vaccine (Dukoral)",
+    "retail": "£35.00"
+   },
+   {
+    "productName": "COVID (Private)",
+    "retail": "£85.00"
+   },
+   {
+    "productName": "Diphtheria/Tetanus/Polio Combined",
+    "retail": "£27.00"
+   },
+   {
+    "productName": "Dengue (Qdenga)",
+    "retail": "£110.00"
+   },
+   {
+    "productName": "Hepatitis A & B Combined (Adult)",
+    "retail": "£56.00"
+   },
+   {
+    "productName": "Hepatitis A (Adult)",
+    "retail": "£40.00"
+   },
+   {
+    "productName": "Hepatitis A (Child)",
+    "retail": "£35.00"
+   },
+   {
+    "productName": "Hepatitis B (Adult)",
+    "retail": "£45.00"
+   },
+   {
+    "productName": "Hepatitis B (Child)",
+    "retail": "£30.00"
+   },
+   {
+    "productName": "Human Papilloma Virus HPV Vaccination",
+    "retail": "£150.00"
+   },
+   {
+    "productName": "Japanese Encephalitis",
+    "retail": "£99.00"
+   },
+   {
+    "productName": "Measles, Mumps, Rubella (MMR)",
+    "retail": "£20.00"
+   },
+   {
+    "productName": "Meningitis ACWY",
+    "retail": "£60.00"
+   },
+   {
+    "productName": "Meningitis B",
+    "retail": "£105.00"
+   },
+   {
+    "productName": "Pneumonia",
+    "retail": "£99.00"
+   },
+   {
+    "productName": "Rabies (Rabipur)",
+    "retail": "£70.00"
+   },
+   {
+    "productName": "Rabies (Verorab)",
+    "retail": "£105.00"
+   },
+   {
+    "productName": "RSV",
+    "retail": "£230.00"
+   },
+   {
+    "productName": "Shingles Vaccine (Shingrix)",
+    "retail": "£145.00"
+   },
+   {
+    "productName": "Tick Borne Encephalitis (Adult)",
+    "retail": "£50.00"
+   },
+   {
+    "productName": "Tick Borne Encephalitis (Child)",
+    "retail": "£50.00"
+   },
+   {
+    "productName": "Typhoid",
+    "retail": "£30.00"
+   },
+   {
+    "productName": "Typhoid (Vivotif - tablets)",
+    "retail": "£30.00"
+   },
+   {
+    "productName": "Whooping Cough",
+    "retail": "£49.00"
+   },
+   {
+    "productName": "Yellow Fever (including certificate)",
+    "retail": "£60.00"
+   },
+   {
+    "productName": "Yellow Fever Replacement Certificate",
+    "retail": "£10.00"
+   }
+  ],
+  "Erectile Dysfunction": [
+   {
+    "productName": "Sildenafil 25mg tablets",
+    "retail": "£9.99"
+   },
+   {
+    "productName": "Sildenafil 50mg tablets",
+    "retail": "£16.99"
+   },
+   {
+    "productName": "Sildenafil 100mg tablets",
+    "retail": "£19.99"
+   },
+   {
+    "productName": "Vardenafil 5mg tablets",
+    "retail": "£29.99"
+   },
+   {
+    "productName": "Vardenafil 10mg tablets",
+    "retail": "£34.99"
+   },
+   {
+    "productName": "Vardenafil 20mg tablets",
+    "retail": "£39.99"
+   },
+   {
+    "productName": "Tadalafil 2.5mg tablets",
+    "retail": "£29.99"
+   },
+   {
+    "productName": "Tadalafil 5mg tablets",
+    "retail": "£34.99"
+   },
+   {
+    "productName": "Tadalafil 10mg tablets",
+    "retail": "£19.99"
+   },
+   {
+    "productName": "Tadalafil 20mg tablets",
+    "retail": "£19.99"
+   }
+  ],
+  "Ear Infection": [
+   {
+    "productName": "Otomize Ear Spray",
+    "retail": "£25.00"
+   }
+  ],
+  "Smoking Cessation": [
+   {
+    "productName": "Varenicline Titration Pack",
+    "retail": "£44.99"
+   },
+   {
+    "productName": "Varenicline 0.5mg",
+    "retail": "£44.99"
+   },
+   {
+    "productName": "Varenicline 1mg",
+    "retail": "£44.99"
+   },
+   {
+    "productName": "Zyban 150mg PR Tabs",
+    "retail": "£74.99"
+   },
+   {
+    "productName": "Cytisine 1.5mg",
+    "retail": "£149.99"
+   }
+  ],
+  "Premature Ejaculation": [
+   {
+    "productName": "Dapoxteine (Priligy) 30mg tabs",
+    "retail": "£24.99"
+   },
+   {
+    "productName": "Dapoxteine (Priligy) 60mg tabs",
+    "retail": "£31.99"
+   }
+  ]
+ }
+}
