@@ -1,7 +1,7 @@
 {
  "success": true,
- "updated": "2026-10-16T12:33:10Z",
- "count": 115,
+ "updated": "2026-10-16T17:29:25Z",
+ "count": 120,
  "categorized": {
   "Blood Tests": [
    {
@@ -129,8 +129,16 @@
   ],
   "Weight Loss": [
    {
-    "productName": "Orlistat",
-    "retail": "£50.00"
+    "productName": "Orlistat - 42 capsules",
+    "retail": "£24.99"
+   },
+   {
+    "productName": "Orlistat - 84 capsules",
+    "retail": "£39.99"
+   },
+   {
+    "productName": "Orlistat - 126 capsules",
+    "retail": "£54.99"
    },
    {
     "productName": "Saxenda - 1 pen",
@@ -376,7 +384,7 @@
    },
    {
     "productName": "Sildenafil 50mg tablets",
-    "retail": "£16.99"
+    "retail": "£14.99"
    },
    {
     "productName": "Sildenafil 100mg tablets",
@@ -400,7 +408,7 @@
    },
    {
     "productName": "Tadalafil 5mg tablets",
-    "retail": "£34.99"
+    "retail": "£29.99"
    },
    {
     "productName": "Tadalafil 10mg tablets",
@@ -419,6 +427,16 @@
    {
     "productName": "Otomize Ear Spray (Two Ears)",
     "retail": "£35.00"
+   }
+  ],
+  "Hair Loss": [
+   {
+    "productName": "Finasteride 1mg tablets",
+    "retail": "£19.99"
+   },
+   {
+    "productName": "Finasteride 1mg tablets",
+    "retail": "£34.99"
    }
   ],
   "Acid Reflux & Heartburn": [
@@ -476,11 +494,15 @@
    },
    {
     "productName": "Dapoxteine (Priligy) 30mg tabs",
-    "retail": "£24.99"
+    "retail": "£39.99"
    },
    {
     "productName": "Dapoxteine (Priligy) 60mg tabs",
     "retail": "£31.99"
+   },
+   {
+    "productName": "Dapoxteine (Priligy) 60mg tabs",
+    "retail": "£49.99"
    }
   ]
  },
@@ -492,6 +514,7 @@
   "Travel vaccines": "travel",
   "Erectile Dysfunction": "other",
   "Ear Infection": "other",
+  "Hair Loss": "other",
   "Acid Reflux & Heartburn": "other",
   "Smoking Cessation": "other",
   "Premature Ejaculation": "other"
