@@ -1,7 +1,7 @@
 {
  "success": true,
- "updated": "2026-10-15T18:20:53Z",
- "count": 107,
+ "updated": "2026-10-16T12:33:10Z",
+ "count": 115,
  "categorized": {
   "Blood Tests": [
    {
@@ -310,15 +310,15 @@
    },
    {
     "productName": "Measles, Mumps, Rubella (MMR)",
-    "retail": "£20.00"
+    "retail": "£45.00"
    },
    {
     "productName": "Meningitis ACWY",
-    "retail": "£60.00"
+    "retail": "£55.00"
    },
    {
     "productName": "Meningitis B",
-    "retail": "£105.00"
+    "retail": "£110.00"
    },
    {
     "productName": "Pneumonia",
@@ -338,7 +338,7 @@
    },
    {
     "productName": "Shingles Vaccine (Shingrix)",
-    "retail": "£145.00"
+    "retail": "£219.00"
    },
    {
     "productName": "Tick Borne Encephalitis (Adult)",
@@ -413,22 +413,52 @@
   ],
   "Ear Infection": [
    {
-    "productName": "Otomize Ear Spray",
+    "productName": "Otomize Ear Spray (One Ear)",
     "retail": "£25.00"
+   },
+   {
+    "productName": "Otomize Ear Spray (Two Ears)",
+    "retail": "£35.00"
+   }
+  ],
+  "Acid Reflux & Heartburn": [
+   {
+    "productName": "Omepraole Capsules 20mg",
+    "retail": "£19.99"
+   },
+   {
+    "productName": "Omeprazole Tablets 20mg",
+    "retail": "£19.99"
+   },
+   {
+    "productName": "Esomeprazole Tablets 20mg",
+    "retail": "£19.99"
+   },
+   {
+    "productName": "Esomeprazole Capsules 20mg",
+    "retail": "£19.99"
+   },
+   {
+    "productName": "Lansoprazole orodispersible tablets 15mg",
+    "retail": "£19.99"
+   },
+   {
+    "productName": "Lansoprazole caps 15mg",
+    "retail": "£19.99"
    }
   ],
   "Smoking Cessation": [
    {
     "productName": "Varenicline Titration Pack",
-    "retail": "£44.99"
+    "retail": "£35.00"
    },
    {
     "productName": "Varenicline 0.5mg",
-    "retail": "£44.99"
+    "retail": "£30.00"
    },
    {
     "productName": "Varenicline 1mg",
-    "retail": "£44.99"
+    "retail": "£30.00"
    },
    {
     "productName": "Zyban 150mg PR Tabs",
@@ -440,6 +470,10 @@
    }
   ],
   "Premature Ejaculation": [
+   {
+    "productName": "Dapoxteine (Priligy) 30mg tabs",
+    "retail": "£24.99"
+   },
    {
     "productName": "Dapoxteine (Priligy) 30mg tabs",
     "retail": "£24.99"
@@ -458,6 +492,7 @@
   "Travel vaccines": "travel",
   "Erectile Dysfunction": "other",
   "Ear Infection": "other",
+  "Acid Reflux & Heartburn": "other",
   "Smoking Cessation": "other",
   "Premature Ejaculation": "other"
  },
