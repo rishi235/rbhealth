@@ -1,72 +1,84 @@
 {
  "success": true,
- "updated": "2026-10-21T13:52:48Z",
- "count": 120,
+ "updated": "2026-11-16T20:31:45Z",
+ "count": 126,
  "categorized": {
   "Blood Tests": [
    {
     "productName": "Allergy Complete - 295 allergens",
-    "retail": "£299.00"
+    "retail": "£329.00"
    },
    {
     "productName": "Anaemia Profile",
-    "retail": "£59.00"
+    "retail": "£99.00"
    },
    {
     "productName": "Baseline Test",
-    "retail": "£29.00"
+    "retail": "£49.00"
    },
    {
     "productName": "Cholesterol / Lipid Profile",
-    "retail": "£29.00"
+    "retail": "£39.00"
    },
    {
     "productName": "Diabetes Test (diabetic Profile 1 - Glucose & HBA1c)",
-    "retail": "£29.00"
+    "retail": "£45.00"
    },
    {
     "productName": "Erectile Dysfunction",
-    "retail": "£79.00"
+    "retail": "£115.00"
    },
    {
     "productName": "Female Hormone",
-    "retail": "£79.00"
+    "retail": "£89.00"
    },
    {
     "productName": "Full Blood Count Test (Haematology Profile)",
-    "retail": "£29.00"
+    "retail": "£46.40"
    },
    {
     "productName": "Full Iron Status Profile (listed as Iron status profile)",
-    "retail": "£59.00"
+    "retail": "£49.00"
    },
    {
     "productName": "Full Thyroid Profile",
     "retail": "£79.00"
    },
    {
+    "productName": "Thyroid Function",
+    "retail": "£49.00"
+   },
+   {
     "productName": "General Health Test",
-    "retail": "£79.00"
+    "retail": "£89.00"
    },
    {
     "productName": "Heart Health & Diabetes Profile",
-    "retail": "£79.00"
+    "retail": "£59.00"
    },
    {
     "productName": "Heart Health Profile",
-    "retail": "£79.00"
+    "retail": "£59.00"
    },
    {
     "productName": "Kidney Function Test",
-    "retail": "£29.00"
+    "retail": "£49.00"
    },
    {
     "productName": "Liver Function Test",
-    "retail": "£29.00"
+    "retail": "£39.00"
    },
    {
     "productName": "Male Hormone",
+    "retail": "£99.00"
+   },
+   {
+    "productName": "Menopause Hormone Profile",
     "retail": "£79.00"
+   },
+   {
+    "productName": "Premier Health Profile",
+    "retail": "£99.00"
    },
    {
     "productName": "Prostate Profile",
@@ -74,7 +86,15 @@
    },
    {
     "productName": "Sports Fitness Test",
-    "retail": "£109.00"
+    "retail": "£119.00"
+   },
+   {
+    "productName": "Sports Hormone Profile",
+    "retail": "£189.00"
+   },
+   {
+    "productName": "Testosterone Plus",
+    "retail": "£59.00"
    },
    {
     "productName": "Tiredness & Fatigue",
@@ -82,23 +102,23 @@
    },
    {
     "productName": "Vitamin B12 Test",
-    "retail": "£29.00"
+    "retail": "£39.00"
    },
    {
     "productName": "Vitamin Profile (Vit D, B12 & Folate)",
-    "retail": "£79.00"
+    "retail": "£89.00"
    },
    {
     "productName": "Well Man Premier Plus",
-    "retail": "£149.00"
+    "retail": "£159.00"
    },
    {
     "productName": "Well Person Premier Plus Test",
-    "retail": "£109.00"
+    "retail": "£119.00"
    },
    {
     "productName": "Well Woman Premier Plus Profile",
-    "retail": "£149.00"
+    "retail": "£159.00"
    }
   ],
   "Travel - Tablets": [
@@ -142,11 +162,11 @@
    },
    {
     "productName": "Saxenda - 1 pen",
-    "retail": "£79.99"
+    "retail": "£55.00"
    },
    {
     "productName": "Saxenda - 5 Pens",
-    "retail": "£295.00"
+    "retail": "£250.00"
    },
    {
     "productName": "Mounjaro -2.5mg - 1 pen",
@@ -270,7 +290,7 @@
    },
    {
     "productName": "Cholera Vaccine (Dukoral)",
-    "retail": "£35.00"
+    "retail": "£70.00"
    },
    {
     "productName": "COVID (Private)",
@@ -278,11 +298,15 @@
    },
    {
     "productName": "Diphtheria/Tetanus/Polio Combined",
-    "retail": "£27.00"
+    "retail": "£35.00"
    },
    {
     "productName": "Dengue (Qdenga)",
     "retail": "£110.00"
+   },
+   {
+    "productName": "Flu Vaccine Private",
+    "retail": "£20.99"
    },
    {
     "productName": "Hepatitis A & B Combined (Adult)",
